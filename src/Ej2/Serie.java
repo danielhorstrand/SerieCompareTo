@@ -4,20 +4,23 @@ import java.util.ArrayList;
 
 public class Serie implements Comparable<Serie>{
 	
+	double valoracion;
 	String nombre;
 	ArrayList<Capitulo> capitulos;
 	String sinopsis;
 	
 	
 	
-	public Serie(String nombre, ArrayList<Capitulo> capitulos, String sinopsis) {
+	public Serie(String nombre, ArrayList<Capitulo> capitulos, String sinopsis,double valoracion) {
 		super();
+	
 		this.nombre = nombre;
 		
 		this.capitulos = new ArrayList<Capitulo>();
 		this.capitulos = capitulos;
 		
 		this.sinopsis = sinopsis;
+		this.valoracion = valoracion;
 	}
 	
 	
@@ -66,17 +69,28 @@ public class Serie implements Comparable<Serie>{
 		return this.nombre;
 	}
 
+	
+	public double getValoracion() {
+		return valoracion;
+	}
+
+
 	public int compareTo(Serie x) {
-		int duraciontotal = 0;
-		for(int i = 0; i<this.capitulos.size();i++ ){			
-			duraciontotal += this.capitulos.get(i).duracion;
-		}
-		int resultado=0;
-		if(duraciontotal<x.DuracionTotal()){
+
+		int resultado=0;	
+		if(this.valoracion<x.valoracion){
 			resultado=-1;
-		}else if (duraciontotal<x.DuracionTotal()){
+		}else if (this.valoracion>x.valoracion){
 				resultado=1;
 			}else {   resultado = 0;   }
 		return resultado;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Serie [nombre=" + nombre + ", capitulos=" + capitulos + ", sinopsis="
+				+ sinopsis +" valoracion=" + valoracion + "]\n";
+	}
+	
 }

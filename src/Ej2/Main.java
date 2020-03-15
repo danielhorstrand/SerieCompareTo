@@ -1,6 +1,7 @@
 package Ej2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -17,7 +18,7 @@ public class Main {
 		Capitulo capitulo2 = new Capitulo(2,"aosfsdfsdfsdfsdfsdfsfpsodiapodiaopsdi", 33);
 		serial1.add(capitulo2);
 		
-		Serie serie1 = new Serie("Juego de Tronos", serial1,"los 7 reinos y su dragones, que viene el invierno");
+		Serie serie1 = new Serie("Juego de Tronos", serial1,"los 7 reinos y su dragones, que viene el invierno",8.6);
 		series.add(serie1);
 		
 		ArrayList<Capitulo> serial2 = new ArrayList<Capitulo>();
@@ -26,7 +27,7 @@ public class Main {
 		Capitulo capitulo12 = new Capitulo(2,"asopadisopadiposadipsoadipsadipasdipadiodi", 123);
 		serial2.add(capitulo12);
 		
-		Serie serie2 = new Serie("Hander clander", serial2,"un señor de cuenca va a visiatar a su abuela que vive en chinchilla y le salen unso extraterrester verdes");
+		Serie serie2 = new Serie("Hander clander", serial2,"un señor de cuenca va a visiatar a su abuela que vive en chinchilla y le salen unso extraterrester verdes",2.1);
 		series.add(serie2);
 		
 		Scanner sc = new Scanner(System.in);
@@ -35,7 +36,7 @@ public class Main {
 		
 		while(opcion!=4){
 			
-			System.out.println("Introduzca opcion\n 1) Listar Series \n 2) Ver Series \n 3) Comparar duracion Serie \n 4) Apagar");
+			System.out.println("Introduzca opcion\n 1) Listar Series \n 2) Ver Series \n 3) Listar serie por valoracion \n 4) Apagar");
 			opcion = sc.nextInt();
 			
 			switch(opcion){
@@ -63,13 +64,20 @@ public class Main {
 					series.get(opcion2-1).VerCapítulo(opcion3);
 				break;
 			case 3:
-			     if (serie1.compareTo(serie2) < 0 ){
-			    	 System.out.println("La serie "+serie1.nombre+" : es menor.\n"); 
-			    	 }else if (serie1.compareTo(serie2) > 0 ){
-			    		 System.out.println("La serie "+serie1.nombre+": es mayor.\n");
-			    		 }else {
-			    			 System.out.println ("La serie "+serie1.nombre+" es igual a la persona p2\n");
-			    			 }
+				Collections.sort(series);
+				System.out.println("Lista ordenada de series \n");
+				for(int i=0;i< series.size();i++){
+					System.out.println(series.get(i).GetNombre()+" : "+series.get(i).getValoracion());
+				}
+				System.out.println();
+				
+			    if (serie1.compareTo(serie2) < 0 ){
+			       System.out.println("La serie "+serie1.nombre+" tiene una valoracion menor con: "+serie1.valoracion); 
+			    }
+			    if (serie1.compareTo(serie2) > 0 ){
+			       System.out.println("La serie "+serie1.nombre+" tiene una valoracion mayor con: "+serie1.valoracion);
+			    }
+			    System.out.println();
 				break;
 			case 4:
 				System.out.println("OFF");
